@@ -432,7 +432,7 @@ const zoomModel = (e) => {
 
                 {currentModel === 'table' && 
                 
-                <Interactive onMove={rotateModel} onHover={zoomModel}>
+                <Interactive onMove={rotateModel}>
                   <mesh scale={[scale, scale, scale]} ref={modelRef} position={position}>
                     <Table/>
                   </mesh>
