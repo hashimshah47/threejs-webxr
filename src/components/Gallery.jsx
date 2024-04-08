@@ -99,10 +99,13 @@ const Gallery = () => {
 
     function calculateDirection(newX, newY) {
         // deal with the horizontal case
-        if (oldX < newX) {
+        if (oldX < newX && newX-oldX>=2) {
             xDirection = "right";
-        } else {
+        } else if(oldX > newX && oldX-newX>=2) {
             xDirection = "left";
+        }
+        else{
+          xDirection = "";
         }
 
         // deal with the vertical case
@@ -111,17 +114,13 @@ const Gallery = () => {
         } else {
             yDirection = "up";
         }
-
         oldX = newX;
         oldY = newY;
 
         setXDir(xDirection);
         setYDir(yDirection);
-        // console.log(xDirection + " " + yDirection);
+        console.log(xDirection);
     }
-
-  
-
     return () => {
         bodyElement.removeEventListener("mousemove", handleMove);
         bodyElement.removeEventListener("touchmove", handleMove);
@@ -321,9 +320,6 @@ const rotateModelRight = () => {
     console.log("right")
     modelRef.current.rotation.y += THREE.MathUtils.degToRad(5);
   }
-  // else if(xDir === "left"){
-  //   modelRef.current.rotation.y -= THREE.MathUtils.degToRad(10);
-  // }
 }
 
 const rotateModelLeft = () => {
@@ -331,9 +327,6 @@ const rotateModelLeft = () => {
     console.log("left")
     modelRef.current.rotation.y -= THREE.MathUtils.degToRad(5);
   }
-  // else if(xDir === "right"){
-  //   modelRef.current.rotation.y += THREE.MathUtils.degToRad(10);
-  // }
 }
 
 // const [pinchDistance, setPinchDistance] = useState();
